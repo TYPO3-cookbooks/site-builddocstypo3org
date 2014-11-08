@@ -1,7 +1,19 @@
 Overview
 ========
 
-This is the Cookbook used to deploy build.docs.typo3.org website
+This is the Cookbook used to deploy the Docs Rendering Hub located at [build.docs.typo3.org](http://build.docs.typo3.org).
+There are several parts of the Rendering Hub:
+
+* The Flow-based application ([git.typo3.org](https://git.typo3.org/Packages/TYPO3.Docs.git))
+* The Flow distribution for the application ([github](https://github.com/TYPO3-infrastructure/build.docs.typo3.org))
+* The Chef cookbook used to setup the server environment ([github](https://github.com/TYPO3-cookbooks/site-builddocstypo3org) ***<<< You are here!***)
+
+Both the Flow distribution and the Chef cookbook have a virtual machine (VM) setup. This table highlights the differences, and the reasons for having two different VMs:
+
+| Repository    | Purpose of VM      | Deployment Context | How the App gets into the VM  | Includes Flow Distribution? |
+|---------------|--------------------|--------------------|-------------------------------|-----------------------------|
+| Distribution  | App development    | Developer machine  | rsync folders from host to VM | Yes                         |
+| Chef Cookbook | Server development | Production server  | Surf deployment               | No                          |
 
 Vagrant setup
 =============
