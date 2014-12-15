@@ -5,7 +5,6 @@
 default['site-builddocstypo3org']['install']['libreoffice'] = true
 default['site-builddocstypo3org']['install']['texlive'] = true
 default['site-builddocstypo3org']['install']['cron'] = true
-default['site-builddocstypo3org']['install']['rabbitmq'] = true
 
 default['php']['secure_functions'] = false
 default['php']['ini_settings']['memory_limit'] = '512M'

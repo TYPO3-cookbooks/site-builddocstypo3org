@@ -34,6 +34,7 @@ include_recipe "site-builddocstypo3org::_php5"
 include_recipe "site-builddocstypo3org::_apache2"
 include_recipe "site-builddocstypo3org::_app"
 include_recipe "site-builddocstypo3org::_restructuredtext"
+include_recipe "site-builddocstypo3org::_rabbitmq"
 
 if node['site-builddocstypo3org']['install']['cron']
   include_recipe "site-builddocstypo3org::_cron"
