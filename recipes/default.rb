@@ -24,27 +24,27 @@
 include_recipe "apt"
 
 # Continue provisioning...
-include_recipe "site-builddocstypo3org::packages"
+include_recipe "site-builddocstypo3org::_packages"
 
 # Continue the deployment of the application...
-include_recipe "site-builddocstypo3org::user"
-include_recipe "site-builddocstypo3org::mysql"
-include_recipe "site-builddocstypo3org::php5"
+include_recipe "site-builddocstypo3org::_user"
+include_recipe "site-builddocstypo3org::_mysql"
+include_recipe "site-builddocstypo3org::_php5"
 
-include_recipe "site-builddocstypo3org::apache2"
-include_recipe "site-builddocstypo3org::app"
-include_recipe "site-builddocstypo3org::restructuredtext"
+include_recipe "site-builddocstypo3org::_apache2"
+include_recipe "site-builddocstypo3org::_app"
+include_recipe "site-builddocstypo3org::_restructuredtext"
 
 if node['site-builddocstypo3org']['install']['cron']
-  include_recipe "site-builddocstypo3org::cron"
+  include_recipe "site-builddocstypo3org::_cron"
 end
 
 # Only install TextLive is configured so, default is "true" to be production ready.
 if node['site-builddocstypo3org']['install']['texlive']
-  include_recipe "site-builddocstypo3org::packages_textlive"
+  include_recipe "site-builddocstypo3org::_packages_textlive"
 end
 
 # Only install LibreOffice if configured so, default is "true" to be production ready.
 if node['site-builddocstypo3org']['install']['libreoffice']
-  include_recipe "site-builddocstypo3org::libreoffice"
+  include_recipe "site-builddocstypo3org::_libreoffice"
 end
