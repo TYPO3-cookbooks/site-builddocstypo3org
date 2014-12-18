@@ -21,3 +21,9 @@ default['site-builddocstypo3org']['database']['name'] = "builddocstypo3org"
 default['site-builddocstypo3org']['database']['username'] = "builddocs"
 default['site-builddocstypo3org']['database']['password'] = nil
 default['site-builddocstypo3org']['database']['hostname'] = "localhost"
+
+node.override['php']['ini_settings'] = {
+  'memory_limit' => '512M',
+  'date.timezone' => 'Europe/Zurich',
+  'display_errors' => 'Off'
+}
