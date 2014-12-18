@@ -62,12 +62,20 @@ module TYPO3
       "#{base_directory}/shared"
     end
 
-    # Return the "shared" directory.
+    # Return the "document_root" directory.
     #
     # @return string
     def docs_document_root_directory
-      base_directory = docs_base_directory
-      "#{base_directory}/www"
+      deploy_directory = docs_deploy_directory
+      "#{deploy_directory}/current"
+    end
+
+    # Return the "document_root" directory.
+    #
+    # @return string
+    def docs_web_directory
+      doc_root_directory = docs_document_root_directory
+      "#{doc_root_directory}/Web"
     end
 
     # Return the "log" directory.
@@ -82,7 +90,21 @@ module TYPO3
     #
     # @return string
     def docs_www_group
-      node['apache']['group']
+      node['nginx']['group']
+    end
+
+    # Return the server_name
+    #
+    # @return string
+    def docs_server_name
+      node['site-builddocstypo3org']['app']['server_name']
+    end
+
+    # Return the fpm_port
+    #
+    # @return string
+    def docs_fpm_port
+      9000
     end
   end
 end

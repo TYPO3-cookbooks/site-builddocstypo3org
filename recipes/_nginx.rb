@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: site-builddocstypo3org
 #
-# Copyright 2012, TYPO3 Association
+# Copyright 2014, TYPO3 Association
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,28 +17,30 @@
 #
 
 ######################################
-# Install Apache
+# Install nginx
 ######################################
-include_recipe "apache2"
-include_recipe "apache2::mod_php5"
-include_recipe "apache2::mod_rewrite"
-include_recipe "apache2::mod_expires"
-include_recipe "apache2::mod_headers"
+include_recipe "nginx::default"
 
 ######################################
 # Configure Virtual Host
 ######################################
-owner = docs_application_owner
-home = docs_base_directory
-log_directory = docs_log_directory
-document_root = docs_document_root_directory
+user = docs_application_owner
 www_group = docs_www_group
-server_name = node['site-builddocstypo3org']['app']['server_name']
+server_name = docs_server_name
+document_root = docs_web_directory
+log_directory = docs_log_directory
+flow_rootpath = docs_document_root_directory
+flow_context = node['site-builddocstypo3org']['app']['context']
+fpm_port = docs_fpm_port
 
+
+######################################
+# Configure nginx Environment
+######################################
 directories = [log_directory, document_root]
 directories.each do |directory|
   directory "#{directory}" do
-    owner owner
+    owner user
     group www_group
     mode "0755"
     recursive true
@@ -46,27 +48,31 @@ directories.each do |directory|
   end
 end
 
-template "#{server_name}" do
-  path "#{node[:apache][:dir]}/sites-available/#{server_name}"
-  source "apache2-site-vhost.erb"
-  owner node[:apache][:user]
-  group node[:apache][:group]
+cookbook_file "/etc/nginx/flow.conf" do
+  source "nginx/flow.conf"
+end
+
+template "/etc/nginx/sites-available/#{server_name}" do
+  source "nginx/nginx-site.erb"
+  owner "root"
+  group "root"
   mode 0644
   variables(
-    :log_dir => "#{log_directory}",
-    :document_root => "#{document_root}",
-    :server_name => "#{server_name}",
-    :server_alias => node['site-builddocstypo3org']['app']['server_alias']
+    :log_dir => log_directory,
+	:document_root => document_root,
+	:server_name => server_name,
+	:fpm_port => fpm_port,
+	:flow_context => flow_context,
+	:flow_rootpath => flow_rootpath
   )
+  notifies :reload, "service[nginx]"
 end
 
-# Enable Virtual Host
-apache_site server_name do
-  enable true
-  notifies  :restart, 'service[apache2]'
-end
-
-apache_module "speling" do
+nginx_site server_name do
   enable true
 end
 
+#Get rid of the default site
+nginx_site 'default' do
+  enable false
+end

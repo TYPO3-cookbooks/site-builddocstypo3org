@@ -37,7 +37,7 @@ packages = %w{
 	python-mysqldb
 	python3-setuptools
 
-	php5-mysql
+	php5-mysqlnd
 	php5-curl
 	php5-gd
 	php5-adodb
@@ -45,6 +45,9 @@ packages = %w{
 	php5-sqlite
 	php5-xsl
 	php5-ldap
+
+	php5-fpm
+
 }.each do |pkg|
     package pkg do
       action :install
