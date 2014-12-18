@@ -37,7 +37,7 @@ packages = %w{
 	python-mysqldb
 	python3-setuptools
 
-	php5-mysql
+	php5-mysqlnd
 	php5-curl
 	php5-gd
 	php5-adodb

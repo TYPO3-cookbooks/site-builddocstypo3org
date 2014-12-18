@@ -27,15 +27,16 @@ include_recipe "composer"
 
 # Application variables
 owner = docs_application_owner
-home = docs_base_directory
-deploy_to = docs_deploy_directory
-shared_to = docs_shared_directory
-document_root = docs_document_root_directory
+home = docs_base_directory #/var/www/vhosts/<site>
+deploy_to = docs_deploy_directory #<home>/releases
+shared_to = docs_shared_directory #<home>/shared
+document_root = docs_document_root_directory #<deploy_to>/current
 
 # Database
 database = node['site-builddocstypo3org']['database']['name']
 username = node['site-builddocstypo3org']['database']['username']
 password = node['site-builddocstypo3org']['database']['password']
+hostname = node['site-builddocstypo3org']['database']['hostname']
 
 # Create home directory
 directory deploy_to do
@@ -74,11 +75,11 @@ contexts.each do |context|
     variables(
       :database => database,
       :user => username,
-      :password => password
+      :password => password,
+      :host => hostname
     )
   end
 end
-
 
 # Set profile file where global environment variables are defined
 # Notice, it can be a bit dangerous to simply override the file which could evolve with the distrib...
