@@ -19,6 +19,7 @@
 # we must run python and git default recipes to be sure we have git and python_pip available
 include_recipe "python"
 include_recipe "git"
+include_recipe "mercurial"
 
 home = docs_base_directory
 owner = docs_application_owner

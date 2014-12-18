@@ -67,7 +67,7 @@ contexts.each do |context|
   end
 
   template "#{shared_to}/Configuration/#{context}/Settings.yaml" do
-    source "settings.yaml.erb"
+    source "flow/settings.yaml.erb"
     owner owner
     group owner
     mode "0644"

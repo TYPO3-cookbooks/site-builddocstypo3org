@@ -16,4 +16,3 @@
 # limitations under the License.
 #
 include_recipe "php"
-include_recipe "php::apache2"

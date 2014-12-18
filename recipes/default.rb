@@ -23,16 +23,17 @@
 # Must be included in order to have the recipe succeeding at the first run.
 include_recipe "apt"
 
-# Continue provisioning...
+# Install dependencies
 include_recipe "site-builddocstypo3org::_packages"
 
-# Continue the deployment of the application...
+# Configure each of these systems
 include_recipe "site-builddocstypo3org::_user"
-include_recipe "site-builddocstypo3org::_mysql"
+
 include_recipe "site-builddocstypo3org::_php5"
 
-include_recipe "site-builddocstypo3org::_apache2"
+include_recipe "site-builddocstypo3org::_mysql"
 include_recipe "site-builddocstypo3org::_app"
+
 include_recipe "site-builddocstypo3org::_restructuredtext"
 
 if node['site-builddocstypo3org']['install']['cron']

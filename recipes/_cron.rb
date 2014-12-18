@@ -27,7 +27,7 @@
 #end
 #
 #template "/root/keep-alive.sh" do
-#  source "keep-alive.sh"
+#  source "cron/keep-alive.sh"
 #  mode "0755"
 #  variables(
 #    :release_to => app['release_to'],
