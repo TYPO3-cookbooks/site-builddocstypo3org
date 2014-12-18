@@ -28,3 +28,6 @@ depends "git", '= 0.9.0'
 
 #_restructuredtext
 depends "mercurial", '~> 2.0.4'
+
+#dev_vagrant (for dev vagrant box)
+depends "rabbitmq", '~> 2.3.2'
