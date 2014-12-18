@@ -12,6 +12,9 @@ depends "apt", '~> 2.3.0'
 #_php5
 depends "php", '~> 1.1.0'
 
+#_nginx
+depends "nginx", '~> 1.6.0'
+
 #_mysql
 depends "mysql", '= 1.3.0'
 depends "database", '= 1.3.12'

@@ -30,6 +30,7 @@ include_recipe "site-builddocstypo3org::_packages"
 include_recipe "site-builddocstypo3org::_user"
 
 include_recipe "site-builddocstypo3org::_php5"
+include_recipe "site-builddocstypo3org::_nginx"
 
 include_recipe "site-builddocstypo3org::_mysql"
 include_recipe "site-builddocstypo3org::_app"

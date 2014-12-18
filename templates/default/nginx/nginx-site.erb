@@ -1,0 +1,32 @@
+server {
+	#openvz doesn't have ipv6
+    #listen [::]:80;
+    listen 80;
+    server_name <%= @server_name %>;
+
+    ## Access and error logs.
+    access_log <%= @log_dir %>/access.log;
+    error_log <%= @log_dir %>/error.log;
+
+    # prevent click-jacking http://forge.typo3.org/issues/54837
+    add_header X-Frame-Options SAMEORIGIN;
+
+	root <%= @document_root %>;
+
+	include /etc/nginx/flow.conf;
+
+	location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+
+        #fastcgi_pass unix:/run/php-fpm/php-fpm-5.4.sock;
+        fastcgi_pass 127.0.0.1:<%= @fpm_port %>;
+
+        fastcgi_index index.php;
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+		fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        fastcgi_param   FLOW_CONTEXT          <%= @flow_context %>;
+        fastcgi_param   FLOW_ROOTPATH         <%= @flow_rootpath %>;
+        fastcgi_param   FLOW_REWRITEURLS      1;
+    }
+} # server
