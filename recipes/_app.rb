@@ -88,5 +88,28 @@ end
 #  source "profile"
 #end
 
+######################################
+#t3xutils.phar
+######################################
 
+t3xutils_cache_dir = "#{Chef::Config[:file_cache_path]}/t3xutils"
 
+directory t3xutils_cache_dir do
+  action :create
+end
+
+t3xutils_cache_file = "#{t3xutils_cache_dir}/t3xutils.phar"
+t3xutils_phar_file = "/usr/local/bin/t3xutils.phar"
+
+remote_file t3xutils_cache_file do
+  source "http://bit.ly/t3xutils"
+  mode "0755"
+  action :create
+  not_if do
+    ::File.exist?(t3xutils_cache_file)
+  end
+end
+
+link t3xutils_phar_file do
+  to t3xutils_cache_file
+end
