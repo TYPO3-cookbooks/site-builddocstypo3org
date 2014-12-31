@@ -25,6 +25,12 @@ home = docs_base_directory
 owner = docs_application_owner
 www_group = docs_www_group
 
+# setuptools 10.0.1 is broken: https://bitbucket.org/pypa/setuptools/issue/320
+python_pip "setuptools" do
+  version "9.1"
+  action :install
+end
+
 # Install python packages
 %w{sphinx PyYAML docutils pygments}.each do |package|
   python_pip "#{package}" do
