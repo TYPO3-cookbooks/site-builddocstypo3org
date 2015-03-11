@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-# default recipes to make sure git any pip are installed
+# default recipes to make sure git and pip are installed
 
 # Add a scheduler job starting the queue
 #cron "start-queue" do

@@ -21,6 +21,7 @@
 ###################################################
 include_recipe "php"
 include_recipe "php::fpm"
+# see also the _packages recipe which installs php extensions.
 
 ###################################################
 # PHP FPM Configuration

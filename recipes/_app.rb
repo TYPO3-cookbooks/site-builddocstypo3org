@@ -16,8 +16,14 @@
 # limitations under the License.
 #
 
-# default recipes to make sure git any pip are installed
-include_recipe "python"
+# This recipe gets a few things ready for the app deployed by Surf
+# (or by rsync in development vagrant).
+# Notes:
+# - The app itself does not depend on python, so python is handled in
+#   the _restructuredtext recipe.
+# - The app needs php, but that should be handled by the _php5 recipe.
+#
+# Surf will need php, git, and possibly composer.
 include_recipe "git"
 include_recipe "composer"
 
