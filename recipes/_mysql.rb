@@ -19,7 +19,7 @@
 ####################################################
 # Install MySQL server and create databases
 ####################################################
-include_recipe "mysql::server"
+include_recipe "t3-mysql::server"
 include_recipe "mysql::client"
 include_recipe "database::mysql"
 
