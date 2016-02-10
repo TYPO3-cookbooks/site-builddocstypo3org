@@ -63,8 +63,8 @@ end
 
 # Create directory for Sphinx contrib
 directory "#{home}/Sphinx-Contrib" do
-  owner "#{home}/Sphinx-Contrib"
-  group "#{www_group}"
+  owner owner
+  group www_group
   mode "0755"
   recursive true
   action :create
