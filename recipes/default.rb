@@ -20,6 +20,8 @@
 # Include Helper function
 ::Chef::Recipe.send(:include, TYPO3::Docs)
 
+include_recipe "t3-base"
+
 # Must be included in order to have the recipe succeeding at the first run.
 include_recipe "apt"
 

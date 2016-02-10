@@ -6,30 +6,25 @@ description      "Installs/Configures docs.typo3.org"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.6.0"
 
-#_packages
-depends "apt", '~> 2.3.0'
+depends          "t3-base",     "~> 0.2.0"
 
+
+depends          "t3-mysql",    "~> 0.1.3"
 #_php5
 # this is monkey-patched version
-depends "php", '= 1.1.2'
+depends          "php",         "= 1.1.2"
+
 
 #_nginx
-depends "nginx", '~> 1.6.0'
-
+depends          "nginx",       "= 1.6.0"
 #_mysql
-depends "mysql", '= 1.3.0'
-depends "t3-mysql", "= 0.1.3"
-depends "database", '= 1.3.12'
-
+depends          "database",    "= 1.3.12"
 #_app
-depends "composer", '~> 1.0.5'
-
+depends          "composer",    "= 1.0.6"
 #_app _restructuredtext
-depends "git", '= 0.9.0'
-
+depends          "git"          # pinned in t3-base
 #_restructuredtext
-depends "python", '~> 1.4.6'
-depends "mercurial", '~> 2.0.4'
-
+depends          "python",      "= 1.4.6"
+depends          "mercurial",   "= 2.0.4"
 #dev_vagrant (for dev vagrant box)
-depends "rabbitmq", '~> 2.3.2'
+depends          "rabbitmq",    "= 2.3.2"
